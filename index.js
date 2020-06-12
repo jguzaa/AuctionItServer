@@ -17,17 +17,19 @@ app.get("/", function (req, reply, next) {
 
 });
 
-app.post('/user/',function (req, reply, next) {
+app.post('/user_regis/',function (req, reply, next) {
 
-    let user = req.body.username;
-    let pass = req.body.password;
-
-    dbUser.addUser(user, pass).then(data => {
+    dbUser.addUser(req).then(data => {
         reply.send({ service: 'userRegisted', data: data })
     });
 });
 
+app.post('/login/',function (req, reply, next) {
 
+    dbUser.login(req).then(data => {
+        reply.send({ service: 'userLogin', data: data })
+    });
+});
 
 
 
