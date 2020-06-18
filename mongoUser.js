@@ -10,6 +10,7 @@ exports.addUser = function (req) {
             const collection = client.db("auctionit").collection("user");
             console.log("connected");
 
+            //set json file for db submitting
             let json = { "user": req.body.username, "pass": req.body.password, "pNo": req.body.phoneNo };
 
             collection.insertOne(json, function (err, result) {
@@ -35,10 +36,12 @@ exports.login = function (req) {
             const collection = client.db("auctionit").collection("user");
             console.log("connected");
 
+            //find username and password
             collection.find({ user: req.body.username, pass: req.body.password }).toArray(function (err, result) {
 
                 //client.close();
 
+                //if result > 0 mean account found
                 if (result.length > 0) {
                     console.log(result[0]._id);
                     resolve(result[0]._id);
@@ -62,6 +65,7 @@ exports.seller = function (req) {
             const collection = client.db("auctionit").collection("user");
             console.log("connected");
 
+            //fetch seller detail from userid
             collection.find(MongoObjId(req.body.user_id)).toArray(function (err, result) {
 
                 //client.close();

@@ -10,13 +10,14 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
-//for check connection
+//for connection checking
 app.get("/", function (req, reply, next) {
 
     reply.send("Hello");
 
 });
 
+//for register function
 app.post('/user_regis/',function (req, reply, next) {
 
     dbUser.addUser(req).then(data => {
@@ -24,6 +25,8 @@ app.post('/user_regis/',function (req, reply, next) {
     });
 });
 
+
+//for login function
 app.post('/login/',function (req, reply, next) {
 
     dbUser.login(req).then(data => {
@@ -31,6 +34,8 @@ app.post('/login/',function (req, reply, next) {
     });
 });
 
+
+//for getting seller detail from userid
 app.post('/seller/',function (req, reply, next) {
 
     dbUser.seller(req).then(data => {
@@ -38,6 +43,8 @@ app.post('/seller/',function (req, reply, next) {
     });
 });
 
+
+//for creating auction
 app.post('/create_auction/',function (req, reply, next) {
 
     dbAuction.addAuction(req).then(data => {
@@ -45,6 +52,7 @@ app.post('/create_auction/',function (req, reply, next) {
     });
 });
 
+//for getting auction list
 app.get("/auction/", function (req, reply, next) {
 
     dbAuction.auctionList(req).then(data => {
@@ -53,6 +61,7 @@ app.get("/auction/", function (req, reply, next) {
 
 });
 
+//for get the auction detail from auction id
 app.post("/auction_select/", function (req, reply, next) {
 
     dbAuction.auctionSelect(req).then(data => {
@@ -61,6 +70,7 @@ app.post("/auction_select/", function (req, reply, next) {
 
 });
 
+//for price offering function
 app.post("/doauction/", function (req, reply, next) {
 
     dbAuction.doAuction(req).then(data => {
