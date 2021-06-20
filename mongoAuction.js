@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 const MongoObjId = require('mongodb').ObjectId;
-//const uri = "mongodb+srv://jongjet:jongjet25@myapp.mljmt.mongodb.net/auctionit?retryWrites=true&w=majority";
 const uri = "mongodb://localhost:27017/";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
